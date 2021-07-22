@@ -1,4 +1,4 @@
-class Type < ApplicationRecord
+class Kind < ApplicationRecord
     has_many :bkmtypes
     has_many :bookmarks, through: :bkmtypes
 
