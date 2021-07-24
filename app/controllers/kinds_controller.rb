@@ -4,6 +4,7 @@ class KindsController < ApplicationController
   # GET /kinds or /kinds.json
   def index
     @kinds = Kind.all
+    @chart_content = Kind.chart
   end
 
   # GET /kinds/1 or /kinds/1.json
@@ -21,11 +22,11 @@ class KindsController < ApplicationController
 
   # POST /kinds or /kinds.json
   def create
-    @kind = Kind.new(type_params)
+    @kind = Kind.new(kind_params)
 
     respond_to do |format|
       if @kind.save
-        format.html { redirect_to @kind, notice: "Kind was successfully created." }
+        format.html { redirect_to @kind, notice: "Type was successfully created." }
         format.json { render :show, status: :created, location: @kind }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -37,8 +38,8 @@ class KindsController < ApplicationController
   # PATCH/PUT /kinds/1 or /kinds/1.json
   def update
     respond_to do |format|
-      if @kind.update(type_params)
-        format.html { redirect_to @kind, notice: "Kind was successfully updated." }
+      if @kind.update(kind_params)
+        format.html { redirect_to @kind, notice: "Type was successfully updated." }
         format.json { render :show, status: :ok, location: @kind }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,7 +52,7 @@ class KindsController < ApplicationController
   def destroy
     @kind.destroy
     respond_to do |format|
-      format.html { redirect_to types_url, notice: "Kind was successfully destroyed." }
+      format.html { redirect_to kinds_url, notice: "Type was successfully destroyed." }
       format.json { head :no_content }
     end
   end

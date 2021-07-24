@@ -1,5 +1,8 @@
 {
   "name": "Bookmarks",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "chart.js": "^3.4.1",
+    "chartkick": "^4.0.5"
+  }
 }

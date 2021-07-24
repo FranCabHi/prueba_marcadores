@@ -10,16 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_22_023907) do
-
-  create_table "bkmtypes", force: :cascade do |t|
-    t.integer "bookmark_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "kind_id"
-    t.index ["bookmark_id"], name: "index_bkmtypes_on_bookmark_id"
-    t.index ["kind_id"], name: "index_bkmtypes_on_kind_id"
-  end
+ActiveRecord::Schema.define(version: 2021_07_24_003438) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.string "url"
@@ -35,9 +26,9 @@ ActiveRecord::Schema.define(version: 2021_07_22_023907) do
   create_table "categories", force: :cascade do |t|
     t.string "cat_name"
     t.integer "parent_category_id"
-    t.boolean "public_cat", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status"
     t.index ["parent_category_id"], name: "index_categories_on_parent_category_id"
   end
 

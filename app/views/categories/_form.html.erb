@@ -16,6 +16,16 @@
     <%= form.text_field :cat_name %>
   </div>
 
+  <div class="field">
+    <%= form.label :parent_category_id %>
+    <%= form.select :parent_category_id, @category_list, prompt: "Seleccione una opción" %>
+  </div>
+
+    <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, Category.statuses.keys.to_a %> 
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

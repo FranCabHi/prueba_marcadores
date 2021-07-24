@@ -13,6 +13,11 @@ class BookmarksController < ApplicationController
   # GET /bookmarks/new
   def new
     @bookmark = Bookmark.new
+    categories = Category.all
+    kinds = Kind.all
+
+    @category_list = categories.map { |category| [category.cat_name, category.id] }
+    @kind_list = kinds.map { |kind| [kind.kind_name, kind.id] }
   end
 
   # GET /bookmarks/1/edit
@@ -22,9 +27,11 @@ class BookmarksController < ApplicationController
   # POST /bookmarks or /bookmarks.json
   def create
     @bookmark = Bookmark.new(bookmark_params)
+    
 
     respond_to do |format|
       if @bookmark.save
+        format.js {render "create", layout: false}
         format.html { redirect_to @bookmark, notice: "Bookmark was successfully created." }
         format.json { render :show, status: :created, location: @bookmark }
       else
@@ -64,6 +71,6 @@ class BookmarksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bookmark_params
-      params.require(:bookmark).permit(:url, :name)
+      params.require(:bookmark).permit(:url, :name, :category_id, :kind_id)
     end
 end
