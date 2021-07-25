@@ -22,6 +22,10 @@ class BookmarksController < ApplicationController
 
   # GET /bookmarks/1/edit
   def edit
+    categories = Category.all
+    kinds = Kind.all
+    @category_list = categories.map { |category| [category.cat_name, category.id] }
+    @kind_list = kinds.map { |kind| [kind.kind_name, kind.id] }
   end
 
   # POST /bookmarks or /bookmarks.json
@@ -44,6 +48,7 @@ class BookmarksController < ApplicationController
   # PATCH/PUT /bookmarks/1 or /bookmarks/1.json
   def update
     respond_to do |format|
+
       if @bookmark.update(bookmark_params)
         format.html { redirect_to @bookmark, notice: "Bookmark was successfully updated." }
         format.json { render :show, status: :ok, location: @bookmark }

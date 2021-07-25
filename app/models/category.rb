@@ -6,7 +6,4 @@ class Category < ApplicationRecord
 
     enum status: [:Private, :Public]
 
-    def children(parent)
-        Category.where(parent_category_id: parent.id)
-    end
 end
